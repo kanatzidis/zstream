@@ -1,6 +1,6 @@
 {
   "name": "zstream",
-  "version": "0.1.1",
+  "version": "0.1.10",
   "description": "zipping and unzipping in javascript",
   "main": "zstream.js",
   "scripts": {
@@ -10,14 +10,18 @@
     "zip",
     "unzip"
   ],
-  "author": "alunny",
+  "author": {
+    "name": "alunny"
+  },
   "license": "MIT",
   "devDependencies": {
     "nodeunit": "~0.7.4"
   },
-  "homepage": "https://github.com/alunny/zstream",
-  "repository" : {
-    "type" : "git",
-    "url" : "http://github.com/alunny/zstream.git"
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/alunny/zstream.git"
+  },
+  "dependencies": {
+    "bl": "^0.9.1"
   }
 }

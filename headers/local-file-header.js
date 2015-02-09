@@ -26,11 +26,15 @@ function LocalFileHeader(buf) {
     this.extraFieldLength       = buf.readUInt16LE(this._offset += 2);
     this._offset += 2;
 
+    if(buf.length >= this._offset+this.fileNameLength+this.extraFieldLength) {
     // variable length fields
     var rawFileName = buf.slice(this._offset, this._offset += this.fileNameLength);
     this.filename               = rawFileName.toString();
     this.extraField             = buf.slice(this._offset,
                                         this._offset += this.extraFieldLength);
+    } else {
+      this.incomplete = true;
+    }
 
     this.dataOffset = this._offset;
 }

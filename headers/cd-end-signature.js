@@ -22,8 +22,12 @@ function CDEndSignature(buf) {
     this.CDOffset           = buf.readUInt32LE(this._offset += 4);
     this.commentLength      = buf.readUInt16LE(this._offset += 4);
 
+    if(buf.length >= this._offset+this.commentLength) {
     // variable length fields
     this.comment = buf.slice(this._offset, this._offset + this.commentLength);
+    } else {
+      this.incomplete = true;
+    }
 
     this.signatureLength = this._offset + this.commentLength;
 }

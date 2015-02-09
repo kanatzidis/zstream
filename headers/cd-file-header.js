@@ -36,6 +36,7 @@ function CDFileHeader(buf) {
     this.localFileHeaderOffset  = buf.readUInt32LE(this._offset += 4);
     this._offset += 4;
 
+    if(buf.length >= this._offset+this.fileNameLength+this.extraFieldLength+this.fileCommentLength) {
     // variable length fields
     var rawFileName = buf.slice(this._offset, this._offset += this.fileNameLength);
     this.filename               = rawFileName.toString();
@@ -43,6 +44,9 @@ function CDFileHeader(buf) {
                                         this._offset += this.extraFieldLength);
     this.fileComment            = buf.slice(this._offset,
                                         this._offset += this.fileCommentLength);
+    } else {
+      this.incomplete = true;
+    }
 
     this.headerLength = this._offset;
 }
